@@ -8,7 +8,7 @@ from game import World
 class GameOfLife(Widget):
 	
 	def create_world(self):
-		self.world = World(100, 100)
+		self.world = World(80, 60)
 		self.world.generate()
 		self.paint()
 
