@@ -45,15 +45,15 @@ class World():
 		self.world = evolution
 
 	def get_neighbourhoods(self):
-		evolution = copy.deepcopy(self.world)
+		bordered_world = copy.deepcopy(self.world)
 		
 		#add borders
-		evolution.insert(0, [Cell(0) for i in range(self.width)])
-		evolution.append([Cell(0) for i in range(self.width)])
+		bordered_world.insert(0, [Cell(0) for i in range(self.width)])
+		bordered_world.append([Cell(0) for i in range(self.width)])
 
 		for i in range(self.height+2):
-			evolution[i].insert(0, Cell(0))
-			evolution[i].append(Cell(0))
+			bordered_world[i].insert(0, Cell(0))
+			bordered_world[i].append(Cell(0))
 
 		neighbours = []
 
@@ -67,8 +67,8 @@ class World():
 			for y in range(self.height):
 				for i in range(-1, 2):
 					for j in range(-1, 2):
-						neighbours[y][x] += evolution[y+1+i][x+1+j].status
-				neighbours[y][x] -= evolution[y+1][x+1].status
+						neighbours[y][x] += bordered_world[y+1+i][x+1+j].status
+				neighbours[y][x] -= bordered_world[y+1][x+1].status
 
 		return neighbours
 
